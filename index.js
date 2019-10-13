@@ -2,7 +2,7 @@
 
 const apiUrlEvents = '';
 const apiKeyEvents = '';
-const apiUrlWeather = 'https://www.amdoren.com/api/weather.php';
+const apiUrlWeather = 'https://cors-anywhere.herokuapp.com/https://www.amdoren.com/api/weather.php';
 const apiKeyWeather = 'JGvtUEzvrEiNXHqBhzdHUFbg2LDSa2';
 const apiUrlGeocode = 'https://api.opencagedata.com/geocode/v1/json';
 const apiKeyGeocode = '03e22bad1050401d963f67eaf05c9f6a';
@@ -67,32 +67,32 @@ function getEvents(latLng, date) {
 
 
 
-// function getWeather(latLng, date) {
-//     //this function passes the correct url to combine with the weather api endpoint url to 
-//    //display the weather in the DOM
-//     console.log(latLng);
-//     console.log(`getWeather date is ${date}`);
-//     let eventLat = latLng.lat;
-//     let eventLon = latLng.lng;
-//     let weatherParams = {
-//         api_key: apiKeyWeather,
-//         lat: eventLat,
-//         lon: eventLon
-//     }
-//     let queryString = Object.keys(weatherParams).map(param =>`${param}=${weatherParams[param]}`).join('&');
-//     let url = apiUrlWeather + '?' + queryString;
-//     console.log(url); 
+function getWeather(latLng, date) {
+   //this function passes the correct url to combine with the weather api endpoint url to 
+   //display the weather in the DOM
+    console.log(latLng);
+    console.log(`getWeather date is ${date}`);
+    let eventLat = latLng.lat;
+    let eventLon = latLng.lng;
+    let weatherParams = {
+        api_key: apiKeyWeather,
+        lat: eventLat,
+        lon: eventLon
+    }
+    let queryString = Object.keys(weatherParams).map(param =>`${param}=${weatherParams[param]}`).join('&');
+    let url = apiUrlWeather + '?' + queryString;
+    console.log(url); 
 
-//     fetch(url).then(response => {
-//         if (response.ok) {
-//           return response.json();
-//         }
-//         throw new Error(response.statusText);
-//       })
-//       ,then(responseJson => console.log(responseJson))
-//       .catch(err => {console.log(`Something went wrong getting weather: ${err.message}`);
-//       });
-//     }
+    fetch(url).then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error(response.statusText);
+      })
+      .then(responseJson => console.log(responseJson))
+      .catch(err => {console.log(`Something went wrong getting weather: ${err.message}`);
+      });
+    }
 
 // function displayResults(responseJson) {
 //     //the manipulation of the DOM to show list of results
