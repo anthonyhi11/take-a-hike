@@ -63,10 +63,11 @@ function getEvents(latLng, date) {
     console.log(`getEvents latLng = ${latLng}`);
     console.log(`getEvents date is ${date}`);
     let correctLatLon = Object.keys(latLng).map(value => `${latLng[value]}`).join(',');
+    let correctDate = date + 'T00:00:00Z' //adding formatting for the API
     let params = {
         apikey: apiKeyEvents,
         latlong: correctLatLon,
-        startDateTime: date
+        startDateTime: correctDate
     }
     let queryString = Object.keys(params).map(param =>
         `${param}=${params[param]}`).join('&');
@@ -80,8 +81,7 @@ function getEvents(latLng, date) {
         }
         throw new Error(response.statusText);
     })
-    .then(responseJson => console.log(responseJson));
-     //displayResults(responseJson);
+    .then(responseJson => displayResults(responseJson));
  }
 
 
@@ -115,7 +115,12 @@ function getWeather(latLng, date) {
 
 function displayResults(responseJson) {
     //the manipulation of the DOM to show list of results
-
+    for (let i=0; i<11; i++) {
+    $('#js-results').append(`<li class='list-of-results'>
+    <h1 class='event-name'>${responseJson._embedded.events[i].name}</h1>
+    <p> class='event-url>${responseJson._embedded.events[i].url}</p>
+    <p> class='event-date>${responseJson._embedded.events[i].dates.localDate} ${responseJson.embedded.events[i].dates.localTime}</p>
+    `) }
 
     listenClicks();
 }
