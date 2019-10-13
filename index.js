@@ -1,7 +1,7 @@
 'use strict'
 
-const apiUrlEvents = '';
-const apiKeyEvents = '';
+const apiUrlEvents = 'https://cors-anywhere.herokuapp.com/https://app.ticketmaster.com/discovery/v2/events';
+const apiKeyEvents = 'F7esUapE0UVZpRyApusQPIVOlVgyUkYE';
 const apiUrlWeather = 'https://cors-anywhere.herokuapp.com/https://www.amdoren.com/api/weather.php';
 const apiKeyWeather = 'JGvtUEzvrEiNXHqBhzdHUFbg2LDSa2';
 const apiUrlGeocode = 'https://api.opencagedata.com/geocode/v1/json';
@@ -62,6 +62,25 @@ function getEvents(latLng, date) {
    //display results.
     console.log(`getEvents latLng = ${latLng}`);
     console.log(`getEvents date is ${date}`);
+    let correctLatLon = Object.keys(latLng).map(value => `${latLng[value]}`).join(',');
+    let params = {
+        apikey: apiKeyEvents,
+        latlong: correctLatLon,
+        startDateTime: date
+    }
+    let queryString = Object.keys(params).map(param =>
+        `${param}=${params[param]}`).join('&');
+        let url = apiUrlEvents + '?' + queryString;
+        console.log(`the url for getEvents is ${url}`)
+
+    fetch(url)
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        }
+        throw new Error(response.statusText);
+    })
+    .then(responseJson => console.log(responseJson));
      //displayResults(responseJson);
  }
 
@@ -89,26 +108,34 @@ function getWeather(latLng, date) {
         }
         throw new Error(response.statusText);
       })
-      .then(responseJson => console.log(responseJson))
+      .then(responseJson => displayWeather(responseJson))
       .catch(err => {console.log(`Something went wrong getting weather: ${err.message}`);
       });
     }
 
-// function displayResults(responseJson) {
-//     //the manipulation of the DOM to show list of results
+function displayResults(responseJson) {
+    //the manipulation of the DOM to show list of results
 
 
-//     listenClicks();
-// }
+    listenClicks();
+}
 
-// function displayWeather(responseJson) {
-//     //displays the weather in the DOM
-// }
-//STRETCH GOAL
+function displayWeather(responseJson) {
+    //displays the weather in the DOM
+    $('#weather-results').append(`
+    <li class=result-weather>
+        <p>${responseJson.forecast[0].date}</p>
+        <p>Low: ${responseJson.forecast[0].min_f}</p>
+        <p>High: ${responseJson.forecast[0].max_f}</p>
+        <p>Summary: ${responseJson.forecast[0].summary}</p
+    </li>`)
+}
+
+// STRETCH GOAL
 // function listenClicks() {
 //     //function listens for clicks on the description button and runs function
 //     getDescription
-// }
+// // 
 
 $(watchForm());
 
