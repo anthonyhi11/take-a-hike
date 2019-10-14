@@ -116,6 +116,8 @@ function getWeather(latLng, date) {
 function displayResults(responseJson) {
     //the manipulation of the DOM to show list of results
     for (let i=0; i<11; i++) {
+        console.log(i);
+        console.log(`inside for loop ${responseJson}`)
     $('#js-results').append(`<li class='list-of-results'>
     <h1 class='event-name'>${responseJson._embedded.events[i].name}</h1>
     <p> class='event-url>${responseJson._embedded.events[i].url}</p>
