@@ -125,9 +125,11 @@ function getWeather(key) {
 
 function displayResults(responseJson) {
     //the manipulation of the DOM to show list of results
+    $('.js-results').removeClass('hidden');
+    $('#js-results').empty();
     for (let i=0; i<10; i++) {
     $('#js-results').append(`<li class='list-of-results'>
-    <h1 class='event-name'>${responseJson.trails[i].name}</h1>
+    <h3 class='event-name'>${responseJson.trails[i].name}</h1>
     <p>${responseJson.trails[i].location}</p>
     <p>Summary: ${responseJson.trails[i].summary}</p>
     <a href='${responseJson.trails[i].url}'<p class='event-url' target='_blank'>Visit Site</p></a>
@@ -135,12 +137,13 @@ function displayResults(responseJson) {
 
 function displayWeather(responseJson) {
     //displays the weather in the DOM
+    $('#weather-results').empty();
     $('#weather-results').append(`
+    <h2>Today's Weather</h2>
     <li class=result-weather>
         <p>${responseJson.DailyForecasts[0].Day.IconPhrase}</p>
         <p>Low: ${responseJson.DailyForecasts[0].Temperature.Minimum.Value}F</p>
-        <p>High: ${responseJson.DailyForecasts[0].Temperature.Maximum.Value}</p>
-        <p>Summary</p>
+        <p>High: ${responseJson.DailyForecasts[0].Temperature.Maximum.Value}F</p>
     </li>`)
 }
 
