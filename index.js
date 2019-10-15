@@ -1,8 +1,8 @@
 'use strict'
 
-const apiUrlWeatherGeoPosition = 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
+const apiUrlWeatherGeoPosition = 'https://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
 const apiKeyWeatherGeoPosition = 'jH9hEX2cMTEv9tR6mRQtGXRoQDAxOcZc';
-const apiUrlWeather = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/';
+const apiUrlWeather = 'https://dataservice.accuweather.com/forecasts/v1/daily/5day/';
 const apiUrlGeocode = 'https://api.opencagedata.com/geocode/v1/json';
 const apiKeyGeocode = '03e22bad1050401d963f67eaf05c9f6a';
 const apiKeyTrails = '200617515-0d0fe4d295ecf7837b93fe536a715bdf';
@@ -14,19 +14,15 @@ function watchForm() {
     $('#js-submit').submit(function(event) {
     event.preventDefault();
     const city = $('#js-city-state').val();
-    const date = $('#js-start').val();
-    console.log(city);
-    console.log(date);
-    getLongLat(city, date);  
+    getLongLat(city);  
     });
 }
 
-function getLongLat(city, date) {
+function getLongLat(city) {
     //this function formats the user info for the fetch function for the getLongLat API 
     // then passes the reponse from the api through the fetch functions for getWeather and getEvents
     let encoded = encodeURI(city);
-    let formatted = encoded.replace(',', '%2C')
-    console.log(formatted)
+    let formatted = encoded.replace(',', '%2C');
     let params = {
         q: formatted,
         key: apiKeyGeocode,
@@ -36,8 +32,7 @@ function getLongLat(city, date) {
 
     //formatting the string to correctly call the API
     let queryString = Object.keys(params).map(param => `${param}=${params[param]}`).join('&');
-    console.log(queryString);
-    const geocodeUrl = apiUrlGeocode + '?' + queryString
+    const geocodeUrl = apiUrlGeocode + '?' + queryString;
 
     //fetch function
     fetch(geocodeUrl)
@@ -57,8 +52,6 @@ function getLongLat(city, date) {
 
 
 function getTrails(lati, lng) {
-    console.log(lati);
-    console.log(lng);
     let params = {
         key: apiKeyTrails,
         lat: lati,
@@ -104,14 +97,11 @@ async function getLocationKey(responseJson) {
 function getWeather(key) {
    //this function passes the correct url to combine with the weather api endpoint url to 
    //display the weather in the DOM
-    console.log(key);
-   
     let params = {
         apikey: apiKeyWeatherGeoPosition,
     }
     let queryString = Object.keys(params).map(param => `${param}=${params[param]}`);
     let url = apiUrlWeather + '/' + key + '?' + queryString;
-    console.log(`url is ${url}`)
     fetch(url).then(response => {
         if (response.ok) {
           return response.json();
