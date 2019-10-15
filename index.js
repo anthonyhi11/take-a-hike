@@ -118,7 +118,7 @@ function getWeather(key) {
         }
         throw new Error(response.statusText);
       })
-      .then(responseJson => console.log(responseJson))
+      .then(responseJson => displayWeather(responseJson))
       .catch(err => {console.log(`Something went wrong getting weather: ${err.message}`);
       });
     }
@@ -137,11 +137,11 @@ function displayWeather(responseJson) {
     //displays the weather in the DOM
     $('#weather-results').append(`
     <li class=result-weather>
-        <p>${responseJson.forecast[0].date}</p>
-        <p>Low: ${responseJson.forecast[0].min_f}</p>
-        <p>High: ${responseJson.forecast[0].max_f}</p>
-        <p>Summary: ${responseJson.forecast[0].summary}</p
-//     </li>`)
+        <p>${responseJson.DailyForecasts[0].Day.IconPhrase}</p>
+        <p>Low: ${responseJson.DailyForecasts[0].Temperature.Minimum.Value}F</p>
+        <p>High: ${responseJson.DailyForecasts[0].Temperature.Maximum.Value}</p>
+        <p>Summary</p>
+    </li>`)
 }
 
 $(watchForm());
