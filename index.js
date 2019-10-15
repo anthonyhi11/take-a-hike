@@ -1,11 +1,12 @@
 'use strict'
 
-const apiUrlWeather = 'https://cors-anywhere.herokuapp.com/https://www.amdoren.com/api/weather.php';
-const apiKeyWeather = 'JGvtUEzvrEiNXHqBhzdHUFbg2LDSa2';
+const apiUrlWeatherGeoPosition = 'http://dataservice.accuweather.com/locations/v1/cities/geoposition/search';
+const apiKeyWeatherGeoPosition = 'jH9hEX2cMTEv9tR6mRQtGXRoQDAxOcZc';
+const apiUrlWeather = 'http://dataservice.accuweather.com/forecasts/v1/daily/5day/';
 const apiUrlGeocode = 'https://api.opencagedata.com/geocode/v1/json';
 const apiKeyGeocode = '03e22bad1050401d963f67eaf05c9f6a';
-const apiKeyTrails = '200617515-0d0fe4d295ecf7837b93fe536a715bdf'
-const apiUrlTrails = 'https://www.trailrunproject.com/data/get-trails'
+const apiKeyTrails = '200617515-0d0fe4d295ecf7837b93fe536a715bdf';
+const apiUrlTrails = 'https://www.trailrunproject.com/data/get-trails';
 
 function watchForm() {
     //this function listens on the main page and gets the user inputted data to then pass through
@@ -47,7 +48,7 @@ function getLongLat(city, date) {
       throw new Error(response.statusText);
     })
     .then(responseJson => { //passing the values through the weather and events api
-        getWeather(responseJson.results[0].geometry, date)
+        getLocationKey(responseJson.results[0].geometry)
         getTrails(responseJson.results[0].geometry.lat, responseJson.results[0].geometry.lng)
     })
     .catch(err => {console.log(`Something went wrong: ${err.message}`);
@@ -77,29 +78,47 @@ function getTrails(lati, lng) {
     });
 }
 
-function getWeather(latLng, date) {
+
+async function getLocationKey(responseJson) {
+    //takes the lat and long response and get the location key to be used by the weather forecast endpoint
+    let query = Object.keys(responseJson).map(response => `${responseJson[response]}`);
+    let response;
+    let joinedQuery = query.join(',');
+    let params = {
+        apikey: apiKeyWeatherGeoPosition,
+        q: joinedQuery
+    }
+    let queryString = Object.keys(params).map(param => `${param}=${params[param]}`).join('&');
+    let url = apiUrlWeatherGeoPosition + '?' + queryString;
+    try {
+        response = await fetch(url);
+        let parsedResponse = await response.json();
+        getWeather(parsedResponse.Key);
+    } catch (error) {
+        console.log(`Didn't fetch correctly`, error)
+    
+    } 
+}
+
+
+function getWeather(key) {
    //this function passes the correct url to combine with the weather api endpoint url to 
    //display the weather in the DOM
-    console.log(latLng);
-    console.log(`getWeather date is ${date}`);
-    let eventLat = latLng.lat;
-    let eventLon = latLng.lng;
-    let weatherParams = {
-        api_key: apiKeyWeather,
-        lat: eventLat,
-        lon: eventLon
+    console.log(key);
+   
+    let params = {
+        apikey: apiKeyWeatherGeoPosition,
     }
-    let queryString = Object.keys(weatherParams).map(param =>`${param}=${weatherParams[param]}`).join('&');
-    let url = apiUrlWeather + '?' + queryString;
-    console.log(url); 
-
+    let queryString = Object.keys(params).map(param => `${param}=${params[param]}`);
+    let url = apiUrlWeather + '/' + key + '?' + queryString;
+    console.log(`url is ${url}`)
     fetch(url).then(response => {
         if (response.ok) {
           return response.json();
         }
         throw new Error(response.statusText);
       })
-      .then(responseJson => displayWeather(responseJson))
+      .then(responseJson => console.log(responseJson))
       .catch(err => {console.log(`Something went wrong getting weather: ${err.message}`);
       });
     }
@@ -126,44 +145,6 @@ function displayWeather(responseJson) {
 }
 
 $(watchForm());
-
-
-
-
-
-
-
-
-
-// function getEvents(latLng, date) {
-//     //this function passes the query function through on the fetch function and handles the reponse to then
-//    //display results.
-//     console.log(`getEvents latLng = ${latLng}`);
-//     console.log(`getEvents date is ${date}`);
-//     let correctLatLon = Object.keys(latLng).map(value => `${latLng[value]}`).join(',');
-//     let correctDate = date + 'T00:00:00Z' //adding formatting for the API
-//     let endDate = date + 'T23:59:59Z';
-//     let params = {
-//         apikey: apiKeyEvents,
-//         latlong: correctLatLon,
-//         startDateTime: correctDate,
-//         endDateTime: endDate,
-//         radius: 50
-//     }
-//     let queryString = Object.keys(params).map(param =>
-//         `${param}=${params[param]}`).join('&');
-//         let url = apiUrlEvents + '?' + queryString;
-//         console.log(`the url for getEvents is ${url}`)
-
-//     fetch(url)
-//     .then(response => {
-//         if (response.ok) {
-//             return response.json();
-//         }
-//         throw new Error(response.statusText);
-//     })
-//     .then(responseJson => displayResults(responseJson));
-//  }
 
 
 
