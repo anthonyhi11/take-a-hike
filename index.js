@@ -55,7 +55,9 @@ function getTrails(lati, lng) {
     let params = {
         key: apiKeyTrails,
         lat: lati,
-        lon: lng
+        lon: lng, 
+        maxdistance: 60,
+        maxresults: 15
     }
     let queryString = Object.keys(params).map(param => `${param}=${params[param]}`).join('&');
     let url = apiUrlTrails + '?' + queryString;
@@ -121,12 +123,24 @@ function displayResults(responseJson) {
     $('#js-results').append(`<li class='list-of-results'>
     <h3 class='event-name'>${responseJson.trails[i].name}</h1>
     <p>${responseJson.trails[i].location}</p>
+    <a href='' class='js-unhide unhide-click'>More info</a>
+    <div class='hiddeninfo hiddentwo'>
+    <p>Length: ${responseJson.trails[i].length} miles</p>
     <p>Summary: ${responseJson.trails[i].summary}</p>
-    <a href='${responseJson.trails[i].url}'<p class='event-url' target='_blank'>Visit Site</p></a>
-    `) } }
+    <a href='${responseJson.trails[i].url}'><p class='event-url' target='_blank'>Visit Site</p></a>
+    </div>
+    `);
+}
+    $(document).on('click', '.js-unhide', function(event) {
+        event.preventDefault();
+        $('.js-unhide').addClass('hiddentwo');
+        $('.hiddeninfo').removeClass('hiddentwo');
+    });
+}
 
 function displayWeather(responseJson) {
     //displays the weather in the DOM
+
     $('#weather-results').empty();
     $('#weather-results').append(`
     <h2>Today's Weather</h2>
