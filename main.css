@@ -47,7 +47,16 @@ img {
 
 .js-results {
     margin-top: 10px;
+    display: flex;
+    flex-direction: column;
 }
+
+.list-of-results {
+    height: auto;
+    
+}
+
+
 
 
 
