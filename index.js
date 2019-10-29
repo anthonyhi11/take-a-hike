@@ -46,7 +46,10 @@ function getLongLat(city) {
         getLocationKey(responseJson.results[0].geometry)
         getTrails(responseJson.results[0].geometry.lat, responseJson.results[0].geometry.lng)
     })
-    .catch(err => {console.log(`Something went wrong: ${err.message}`);
+    .catch(err => {
+        $('.js-results').empty();
+        $('.js-results').removeClass('hidden');
+        $('.js-results').append(`<h2 class='js-results'>Something went wrong: Please Enter a correct US City and State</h2>`);
  });}
 
 
@@ -118,9 +121,9 @@ function getWeather(key) {
 function displayResults(responseJson) {
     //the manipulation of the DOM to show list of results
     $('.js-results').removeClass('hidden');
-    $('#js-results').empty();
+    $('.js-results').empty();
     for (let i=0; i<10; i++) {
-    $('#js-results').append(`<li class='list-of-results'>
+    $('.js-results').append(`<li class='list-of-results'>
     <h3 class='event-name'>${responseJson.trails[i].name}</h1>
     <p>${responseJson.trails[i].location}</p>
     <a href='' class='js-unhide unhide-click'>More info</a>
