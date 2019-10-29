@@ -8,6 +8,16 @@ const apiKeyGeocode = '03e22bad1050401d963f67eaf05c9f6a';
 const apiKeyTrails = '200617515-0d0fe4d295ecf7837b93fe536a715bdf';
 const apiUrlTrails = 'https://www.trailrunproject.com/data/get-trails';
 
+const STORE = {
+    0: 'Sun',
+    1: 'Mon',
+    2: 'Tues',
+    3: 'Wed',
+    4: 'Thurs',
+    5: 'Fri',
+    6: 'Sat'
+}
+
 function watchForm() {
     //this function listens on the main page and gets the user inputted data to then pass through
     // the below functions
@@ -136,22 +146,31 @@ function displayResults(responseJson) {
 }
     $(document).on('click', '.js-unhide', function(event) {
         event.preventDefault();
-        $('.js-unhide').addClass('hiddentwo');
-        $('.hiddeninfo').removeClass('hiddentwo');
+        $(this).addClass('hiddentwo');
+        $(this).siblings('div').removeClass('hiddentwo');
     });
 }
 
 function displayWeather(responseJson) {
     //displays the weather in the DOM
-
     $('#weather-results').empty();
+    for (let i=0; i < 5; i++) {
+    let icon = responseJson.DailyForecasts[i].Day.Icon;
+    let correctedIcon= icon < 10 ? '0' + icon : icon;
+    let unformattedDate = responseJson.DailyForecasts[i].Date;
+    let date = new Date(unformattedDate);
+    let dateInt = date.getUTCDay();
     $('#weather-results').append(`
-    <h2>Today's Weather</h2>
-    <li class=result-weather>
-        <p>${responseJson.DailyForecasts[0].Day.IconPhrase}</p>
-        <p>Low: ${responseJson.DailyForecasts[0].Temperature.Minimum.Value}F</p>
-        <p>High: ${responseJson.DailyForecasts[0].Temperature.Maximum.Value}F</p>
-    </li>`)
+    <div class='weather-div'>
+        <li class=result-weather>
+            <h2>${STORE[dateInt]}</h2>
+            <img src="https://developer.accuweather.com/sites/default/files/${correctedIcon}-s.png">
+            <p>${responseJson.DailyForecasts[i].Day.IconPhrase}</p>
+            <p>${responseJson.DailyForecasts[i].Temperature.Minimum.Value}F/${responseJson.DailyForecasts[i].Temperature.Maximum.Value}F</p>
+        </li>
+    </div>`
+    )
+    }
 }
 
 $(watchForm());
