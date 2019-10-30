@@ -134,11 +134,14 @@ function displayResults(responseJson) {
     $('.js-results').empty();
     for (let i=0; i<10; i++) {
     $('.js-results').append(`<li class='list-of-results'>
-    <h3 class='event-name'>${responseJson.trails[i].name}</h1>
+    <h3 class='event-name'>${responseJson.trails[i].name}</h3>
     <p>${responseJson.trails[i].location}</p>
+    <p>Length: ${responseJson.trails[i].length} miles</p>
     <a href='' class='js-unhide unhide-click'>More info</a>
     <div class='hiddeninfo hiddentwo'>
-    <p>Length: ${responseJson.trails[i].length} miles</p>
+    <p>Rated: ${responseJson.trails[i].stars}/5 (${responseJson.trails[i].starVotes} reviews)</p>
+    <p>Elevation Change: ${responseJson.trails[i].ascent} feet</p>
+    <p>Current Conditions: ${responseJson.trails[i].conditionStatus}</p>
     <p>Summary: ${responseJson.trails[i].summary}</p>
     <a href='${responseJson.trails[i].url}'><p class='event-url' target='_blank'>Visit Site</p></a>
     </div>
