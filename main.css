@@ -31,6 +31,8 @@ h1 {
     width: 28%;
     font-weight: 600;
     -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
 }
 
 /*Weather results*/
