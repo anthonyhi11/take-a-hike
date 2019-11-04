@@ -135,24 +135,16 @@ function displayResults(responseJson) {
     for (let i=0; i<10; i++) {
     $('.js-results').append(`<li class='list-of-results'>
     <h3 class='event-name'>${responseJson.trails[i].name}</h3>
+    <img class='background-image' src='${responseJson.trails[i].imgSmall}'>
     <p>${responseJson.trails[i].location}</p>
     <p>Length: ${responseJson.trails[i].length} miles</p>
-    <a href='' class='js-unhide unhide-click'>More info</a>
-    <div class='hiddeninfo hiddentwo'>
-    <p>Rated: ${responseJson.trails[i].stars}/5 (${responseJson.trails[i].starVotes} reviews)</p>
     <p>Elevation Change: ${responseJson.trails[i].ascent} feet</p>
     <p>Current Conditions: ${responseJson.trails[i].conditionStatus}</p>
     <p>Summary: ${responseJson.trails[i].summary}</p>
-    <a href='${responseJson.trails[i].url}'><p class='event-url' target='_blank'>Visit Site</p></a>
-    </div>
+    <a href="https://www.google.com/maps/search/?api=1&query=${responseJson.trails[i].latitude},${responseJson.trails[i].longitude}" target='_blank'>Google Maps</a>
     `);
 }
-    $(document).on('click', '.js-unhide', function(event) {
-        event.preventDefault();
-        $(this).addClass('hiddentwo');
-        $(this).siblings('div').removeClass('hiddentwo');
-    });
-}
+};
 
 function displayWeather(responseJson) {
     //displays the weather in the DOM
@@ -169,7 +161,7 @@ function displayWeather(responseJson) {
             <h2>${STORE[dateInt]}</h2>
             <img src="https://developer.accuweather.com/sites/default/files/${correctedIcon}-s.png">
             <p>${responseJson.DailyForecasts[i].Day.IconPhrase}</p>
-            <p>${responseJson.DailyForecasts[i].Temperature.Minimum.Value}F/${responseJson.DailyForecasts[i].Temperature.Maximum.Value}F</p>
+            <p>${responseJson.DailyForecasts[i].Temperature.Minimum.Value}<span>&#176;</span>/${responseJson.DailyForecasts[i].Temperature.Maximum.Value}<span>&#176;</span></p>
         </li>
     </div>`
     )

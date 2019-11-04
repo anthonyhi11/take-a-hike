@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Take a Hike?</title>
-    <link rel="stylesheet" href='http://meyerweb.com/eric/tools/css/reset/' type='text/css'>
-    <link rel="stylesheet" href='main.css' type="text/css">
+    <link rel="stylesheet" href='http://meyerweb.com/eric/tools/css/reset/reset.css' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href='main.css' type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   <body>
      <header><h1>Take A Hike!</h1></header>
      <main>
-        <p>Enter in the US City and State in the form below to access information on the 10 closest trails.</p>
         <form id='js-submit'>
-            <label for='js-city-state'>Find Trails:</label>
-            <input type='text' id='js-city-state' name='js-city-state' placeholder="ex: San Jose, California" required>
-            <input type='submit' class='js-submit'>
+            <input type='text' id='js-city-state' name='js-city-state' placeholder="Enter US City and State" required>
+            <input type='submit' class='js-submit' value='Find Trails'>
         </form>
         <section class='weather'>
             <!--weather info input here-->
