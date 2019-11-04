@@ -104,8 +104,9 @@ img {
     justify-content: space-between;
 }
 .list-of-results p {
-    margin: 10px;
+    margin: 5px;
     line-height: 22px;
+    padding: 5px;
 }
 .list-of-results a {
     margin: 10px;
@@ -124,6 +125,7 @@ h3 {
     font-size: 23px;
     font-weight: 600; 
     margin-right: 50px;
+    margin-bottom: 10px;
     padding-left: 10px;
 }
 .length {
