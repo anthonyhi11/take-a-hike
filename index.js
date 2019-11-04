@@ -133,14 +133,14 @@ function displayResults(responseJson) {
     $('.js-results').removeClass('hidden');
     $('.js-results').empty();
     for (let i=0; i<10; i++) {
-    $('.js-results').append(`<li class='list-of-results'>
+    $('.js-results').append(`<li class='list-of-results'><span class='span'>
     <h3 class='event-name'>${responseJson.trails[i].name}</h3>
+    <p class='length'>${responseJson.trails[i].length} miles</p>
     <img class='background-image' src='${responseJson.trails[i].imgSmall}'>
-    <p>${responseJson.trails[i].location}</p>
-    <p>Length: ${responseJson.trails[i].length} miles</p>
-    <p>Elevation Change: ${responseJson.trails[i].ascent} feet</p>
-    <p>Current Conditions: ${responseJson.trails[i].conditionStatus}</p>
-    <p>Summary: ${responseJson.trails[i].summary}</p>
+    </span>
+    <p><span class='title'>${responseJson.trails[i].location}</span></p>
+    <p><span class='title'>Elevation Change:</span> ${responseJson.trails[i].ascent} feet</p>
+    <p><span class='title'>Summary:</span> ${responseJson.trails[i].summary}</p>
     <a href="https://www.google.com/maps/search/?api=1&query=${responseJson.trails[i].latitude},${responseJson.trails[i].longitude}" target='_blank'>Google Maps</a>
     `);
 }
