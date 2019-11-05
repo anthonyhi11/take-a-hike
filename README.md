@@ -3,6 +3,7 @@ A simple trail finder focused on the bare minimum information a traveling hobbyi
 
 Live Link: https://anthonyhi11.github.io/take-a-hike/
 
-Screenshots: 
+Screenshots: https://github.com/anthonyhi11/take-a-hike/blob/master/screenshots/Empty%20home.png
+https://github.com/anthonyhi11/take-a-hike/blob/master/screenshots/Full%20results.png
 
 Technology used: HTML/CSS/JavaScript/jQuery
