@@ -63,7 +63,7 @@ function getLongLat(city) {
  });}
 
 
-
+//this function formats the trails query and passes it through to fetch from the api
 function getTrails(lati, lng) {
     let params = {
         key: apiKeyTrails,
