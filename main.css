@@ -133,8 +133,9 @@ button {
     justify-content: baseline;
     align-items: baseline;
     width: 100%;
-    height: 45px;
-    margin-bottom: 20px;
+    height: auto;
+    margin-bottom: 5px;
+    line-height: 1.25;
 
 } 
 
@@ -170,7 +171,119 @@ h3 {
     display: none;
 }
 
-@media screen and (min-width: 700px) {
+@media screen and (min-width: 750px) {
+    h1 {
+        text-align: center;
+    }
+    form {
+        text-align: center;
+        margin-top: 20px;
+    }
+    #js-city-state {
+        border-radius: 25px 0px 0px 25px;
+        border: none;
+        padding: 10px;
+        padding-left: 15px;
+        margin-right: -5px;
+        width: 30%;
+        background-color: 	#F0F0F0;
+    }
+    .js-submit {
+        background-color: #00b000;
+        color: white;
+        padding: 10px;
+        border: none;
+        margin-left: 0px;
+        border-radius: 0px 25px 25px 0px;
+        width: 10%;
+        font-weight: 600;
+        -webkit-appearance: none; 
+        -moz-appearance: none;
+        appearance: none;
+    }
+    .weather-div {
+        display: inline-block;
+        width: 10%;
+        height: 100px;
+        margin: 15px 2px 15px 2px;
+        text-align: center;
+        padding: 1px;
+    }
+    .result-weather h2 {
+        font-size: 15px;
+    }
+    
+    p .result-weather {
+        font-size: 1px;
+    }
+    
+    img {
+        width: 45px;
+        height: 30px;
+    }
+    .weather h2 {
+        font-size: 18px;
+        margin: 2px;
+    }
+    .weather-div p  {
+        font-size: 12px;
+        margin: 2px;
+    }
+    #weather-results {
+        display: flex;
+        justify-content: center;
+        padding: 0px;
+        margin: 10px;
+        width: 100%;
+    }
+    .js-results {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .list-of-results {
+        height: auto;
+        background-color: #F0F0F0;
+        border: none;
+        margin: 10px;
+        width: 30%;
+        padding: 20px;
+        border-radius:10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .hidden {
+        display: none;
+    }
+    a {
+        color:white;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    button {
+        width: 35%;
+        background-color: #00b000;
+        border-radius: 25px;
+        padding: 8px;
+        margin-left: 5px;
+        margin-top: 8px;
+    }
+    .span {
+        display: flex;
+        justify-content: baseline;
+        align-items: baseline;
+        width: 100%;
+        height: auto;
+        margin-bottom: 5px;
+        line-height: 1.25;
+    
+    } 
+}
+@media screen and (min-width: 1090px) {
     h1 {
         text-align: center;
     }
@@ -255,6 +368,16 @@ h3 {
         flex-direction: column;
         justify-content: space-between;
     }
+    .span {
+        display: flex;
+        justify-content: baseline;
+        align-items: baseline;
+        width: 100%;
+        height: auto;
+        margin-bottom: 5px;
+        line-height: 1.25;
+    
+    } 
     .hidden {
         display: none;
     }
