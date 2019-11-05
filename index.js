@@ -8,6 +8,7 @@ const apiKeyGeocode = '03e22bad1050401d963f67eaf05c9f6a';
 const apiKeyTrails = '200617515-0d0fe4d295ecf7837b93fe536a715bdf';
 const apiUrlTrails = 'https://www.trailrunproject.com/data/get-trails';
 
+//to store the days of the week for displaying weather
 const STORE = {
     0: 'Sun',
     1: 'Mon',
@@ -24,12 +25,12 @@ function watchForm() {
     $('#js-submit').submit(function(event) {
     event.preventDefault();
     const city = $('#js-city-state').val();
-    getLongLat(city);  
+    getLongLat(city);
     });
 }
 
 function getLongLat(city) {
-    //this function formats the user info for the fetch function for the getLongLat API 
+    //this function formats the user info for the fetch function for the getLongLat API
     // then passes the reponse from the api through the fetch functions for getWeather and getEvents
     let encoded = encodeURI(city);
     let formatted = encoded.replace(',', '%2C');
@@ -68,7 +69,7 @@ function getTrails(lati, lng) {
     let params = {
         key: apiKeyTrails,
         lat: lati,
-        lon: lng, 
+        lon: lng,
         maxdistance: 60,
         maxresults: 15
     }
@@ -104,13 +105,13 @@ async function getLocationKey(responseJson) {
         getWeather(parsedResponse.Key);
     } catch (error) {
         console.log(`Didn't fetch correctly`, error)
-    
-    } 
+
+    }
 }
 
 
 function getWeather(key) {
-   //this function passes the correct url to combine with the weather api endpoint url to 
+   //this function passes the correct url to combine with the weather api endpoint url to
    //display the weather in the DOM
     let params = {
         apikey: apiKeyWeatherGeoPosition,
