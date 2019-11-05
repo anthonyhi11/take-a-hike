@@ -1,9 +1,8 @@
-# Take-a-Hike
+# Take A Hike
+A simple trail finder focused on the bare minimum information a traveling hobbyist needs to know. Enter the city and state you're in and quickly see the nearest trails with 5 day forecast.
 
-Live Link:
+Live Link: https://anthonyhi11.github.io/take-a-hike/
 
-Screenshots
-
-Summary: A user is able to quickly search for the closest 10 trails to a US city. The user will be prompted to enter a Us city and state. They will be able to see the 5 day forecast for the city as well as the 10 closest trails. The trail information will include the length of trail, elevation change, and summary. A google map search of the exact coordinates of the trail is provided via link at the bottom. 
+Screenshots: 
 
 Technology used: HTML/CSS/JavaScript/jQuery
