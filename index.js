@@ -137,7 +137,6 @@ function displayResults(responseJson) {
     $('.js-results').append(`<li class='list-of-results'><span class='span'>
     <h3 class='event-name'>${responseJson.trails[i].name}</h3>
     <p class='length'>${responseJson.trails[i].length} miles</p>
-    <img class='background-image' src='${responseJson.trails[i].imgSmall}'>
     </span>
     <p><span class='title'>${responseJson.trails[i].location}</span></p>
     <p><span class='title'>Elevation Change:</span> ${responseJson.trails[i].ascent} feet</p>
