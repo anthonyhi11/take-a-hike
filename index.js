@@ -169,12 +169,3 @@ function displayWeather(responseJson) {
 }
 
 $(watchForm());
-
-
-
-
-// STRETCH GOAL
-// function listenClicks() {
-//     //function listens for clicks on the description button and runs function
-//     getDescription
-// // 
