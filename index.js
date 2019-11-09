@@ -63,9 +63,9 @@ function getLongLat(city) {
         getTrails(responseJson.results[0].geometry.lat, responseJson.results[0].geometry.lng)}
     })
     .catch(err => {
-        $('.js-results').empty();
+        $('#js-results').empty();
         $('.js-results').removeClass('hidden');
-        $('.js-results').append(`<h2 class='js-results'>Something went wrong: Please enter a correct US city and state</h2>`);
+        $('#js-results').append(`<h2 class='js-results'>Something went wrong: Please enter a correct US city and state</h2>`);
  });}
 
 
