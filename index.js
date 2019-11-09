@@ -137,12 +137,11 @@ function getWeather(key) {
 function displayResults(responseJson) {
     //the manipulation of the DOM to show list of results
     $('.js-results').removeClass('hidden');
-    $('.js-results').empty();
+    $('#js-results').empty();
     for (let i=0; i<10; i++) {
-    $('.js-results').append(`<li class='list-of-results'><span class='span'>
+    $('#js-results').append(`<li class='list-of-results'>
     <h3 class='event-name'>${responseJson.trails[i].name}</h3>
     <p class='length'>${responseJson.trails[i].length} miles</p>
-    </span>
     <p><span class='title'>${responseJson.trails[i].location}</span></p>
     <p><span class='title'>Elevation Change:</span> ${responseJson.trails[i].ascent} feet</p>
     <p><span class='title'>Summary:</span> ${responseJson.trails[i].summary}</p>
@@ -161,15 +160,12 @@ function displayWeather(responseJson) {
     let date = new Date(unformattedDate);
     let dateInt = date.getUTCDay();
     $('#weather-results').append(`
-    <div class='weather-div'>
         <li class=result-weather>
             <h2>${STORE[dateInt]}</h2>
             <img src="https://developer.accuweather.com/sites/default/files/${correctedIcon}-s.png" alt='weather icon'>
             <p>${responseJson.DailyForecasts[i].Day.IconPhrase}</p>
             <p>${responseJson.DailyForecasts[i].Temperature.Minimum.Value}<span>&#176;</span>/${responseJson.DailyForecasts[i].Temperature.Maximum.Value}<span>&#176;</span></p>
-        </li>
-    </div>`
-    )
+        </li>`)
+        }
     }
-}
 $(watchForm);
