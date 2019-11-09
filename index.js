@@ -54,13 +54,18 @@ function getLongLat(city) {
       throw new Error(response.statusText);
     })
     .then(responseJson => { //passing the values through the weather and events api
+        if (responseJson.results[0].components.country_code !== 'us') {
+            $('.js-results').empty();
+            $('.js-results').removeClass('hidden');
+            $('.js-results').append(`<h2 class='js-results'>Sorry! Please enter the full US city and state names with no abbreviations. Example: "Portland, Maine"</h2>`)
+        } else {
         getLocationKey(responseJson.results[0].geometry)
-        getTrails(responseJson.results[0].geometry.lat, responseJson.results[0].geometry.lng)
+        getTrails(responseJson.results[0].geometry.lat, responseJson.results[0].geometry.lng)}
     })
     .catch(err => {
         $('.js-results').empty();
         $('.js-results').removeClass('hidden');
-        $('.js-results').append(`<h2 class='js-results'>Something went wrong: Please Enter a correct US City and State</h2>`);
+        $('.js-results').append(`<h2 class='js-results'>Something went wrong: Please enter a correct US city and state</h2>`);
  });}
 
 
@@ -141,7 +146,7 @@ function displayResults(responseJson) {
     <p><span class='title'>${responseJson.trails[i].location}</span></p>
     <p><span class='title'>Elevation Change:</span> ${responseJson.trails[i].ascent} feet</p>
     <p><span class='title'>Summary:</span> ${responseJson.trails[i].summary}</p>
-    <button><a href="https://www.google.com/maps/search/?api=1&query=${responseJson.trails[i].latitude},${responseJson.trails[i].longitude}" target='_blank'>Google Maps</a></button>
+    <a href="https://www.google.com/maps/search/?api=1&query=${responseJson.trails[i].latitude},${responseJson.trails[i].longitude}" target='_blank'><button>Google Maps</button></a>
     `);
 }
 };
@@ -159,7 +164,7 @@ function displayWeather(responseJson) {
     <div class='weather-div'>
         <li class=result-weather>
             <h2>${STORE[dateInt]}</h2>
-            <img src="https://developer.accuweather.com/sites/default/files/${correctedIcon}-s.png">
+            <img src="https://developer.accuweather.com/sites/default/files/${correctedIcon}-s.png" alt='weather icon'>
             <p>${responseJson.DailyForecasts[i].Day.IconPhrase}</p>
             <p>${responseJson.DailyForecasts[i].Temperature.Minimum.Value}<span>&#176;</span>/${responseJson.DailyForecasts[i].Temperature.Maximum.Value}<span>&#176;</span></p>
         </li>
@@ -167,5 +172,4 @@ function displayWeather(responseJson) {
     )
     }
 }
-
-$(watchForm());
+$(watchForm);

@@ -18,7 +18,7 @@ h1 {
     padding: 10px;
     padding-left: 15px;
     margin-right: -5px;
-    width: 60%;
+    width: 55%;
     background-color: 	#F0F0F0;
 }
 .js-submit {
@@ -86,6 +86,9 @@ img {
     font-size: 10px;
     margin: 2px;
 }
+button, a, input {
+    cursor: pointer;
+}
 
 a {
     color:white;
@@ -99,6 +102,7 @@ button {
     padding: 8px;
     margin-left: 5px;
     margin-top: 8px;
+    color: white;
 }
 
 
@@ -262,6 +266,7 @@ h3 {
         padding: 8px;
         margin-left: 5px;
         margin-top: 8px;
+        color: white;
     }
     .span {
         display: flex;
@@ -386,5 +391,6 @@ h3 {
         padding: 8px;
         margin-left: 5px;
         margin-top: 8px;
+        color: white;
     }
 }
