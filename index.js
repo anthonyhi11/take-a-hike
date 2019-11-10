@@ -145,7 +145,7 @@ function displayResults(responseJson) {
     <p><span class='title'>${responseJson.trails[i].location}</span></p>
     <p><span class='title'>Elevation Change:</span> ${responseJson.trails[i].ascent} feet</p>
     <p><span class='title'>Summary:</span> ${responseJson.trails[i].summary}</p>
-    <a href="https://www.google.com/maps/search/?api=1&query=${responseJson.trails[i].latitude},${responseJson.trails[i].longitude}" target='_blank'><button>Google Maps</button></a>
+    <a href="https://www.google.com/maps/search/?api=1&query=${responseJson.trails[i].latitude},${responseJson.trails[i].longitude}" target='_blank'><span class='span-google'>Google Maps</span></a>
     `);
 }
 };
