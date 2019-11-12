@@ -57,6 +57,7 @@ function getLongLat(city) {
         if (responseJson.results[0].components.country_code !== 'us') {
             $('#js-results').empty();
             $('.js-results').removeClass('hidden');
+            $('#weather-results').empty();
             $('#js-results').append(`<h2 class='js-results'>Sorry! Please enter the full US city and state names with no abbreviations. Example: "Portland, Maine"</h2>`)
         } else {
         getLocationKey(responseJson.results[0].geometry)
