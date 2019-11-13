@@ -9,29 +9,25 @@
         <link rel="stylesheet" href='main.css' type="text/css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     </head>
-  <body>
-     <header><h1>Take A Hike!</h1></header>
+    <body>
+        <header><h1>Take A Hike!</h1></header>
      <main>
         <form id='js-submit'>
             <input type='text' id='js-city-state' name='js-city-state' placeholder="Enter US City and State (ex. Santa Fe, New Mexico)" required>
             <input type='submit' class='js-submit' value='Find Trails'>
         </form>
-        <section class='weather'>
+        <section class='weather' aria-live='polite'>
             <!--weather info input here-->
             <ul id="weather-results">
-
-
             </ul>
         </section>
-        <section class='js-results hidden'>
+        <section class='js-results hidden' aria-live='polite' role='region'>
             <!--list of events put here-->
             <ol id="js-results">
-
-
             </ol>
          </section>
      </main>
      <footer></footer>
-	<script src='index.js'></script>
-  </body>
+    <script src='index.js'></script>
+</body>
 </html>

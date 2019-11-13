@@ -38,6 +38,7 @@ function getLongLat(city) {
         q: formatted,
         key: apiKeyGeocode,
         language: 'en',
+        countrycode: 'us',
         pretty: 1
     }
 
@@ -66,6 +67,7 @@ function getLongLat(city) {
     .catch(err => {
         $('#js-results').empty();
         $('.js-results').removeClass('hidden');
+        $('#weather-results').empty();
         $('#js-results').append(`<h2 class='js-results'>Something went wrong: Please enter a correct US city and state</h2>`);
  });}
 
