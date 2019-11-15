@@ -123,6 +123,7 @@ a {
 
 .list-of-results {
     height: auto;
+    min-height: 200px;
     background-color: #F0F0F0;
     border: none;
     margin: 8px;
@@ -166,7 +167,6 @@ h3 {
     font-weight: 600;
 }
 
-/*image for background of span */
 
 .hidden {
     display: none;
@@ -250,6 +250,7 @@ h3 {
 
     .list-of-results {
         height: auto;
+        min-height: 400px;
         background-color: #F0F0F0;
         border: none;
         margin: 10px;
@@ -366,6 +367,7 @@ h3 {
 
     .list-of-results {
         height: auto;
+        min-height: 325px;
         background-color: #F0F0F0;
         border: none;
         margin: 10px;
